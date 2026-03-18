@@ -80,8 +80,8 @@
     var cvLinks = document.querySelectorAll("#cv-download-link, #cv-download-link-experiencia");
     cvLinks.forEach(function (link) {
       var cvPath = currentLang === "en" 
-        ? "assets/Carlos García - CV_E.pdf"
-        : "assets/Carlos García - CV.pdf";
+        ? "assets/docs/cv-en.pdf"
+        : "assets/docs/cv-es.pdf";
       link.setAttribute("href", cvPath);
     });
 

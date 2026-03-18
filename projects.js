@@ -85,6 +85,15 @@
           return '<span class="project-card__tag">' + escapeHtml(tag) + "</span>";
         }).join("");
 
+        var images = normalizeImages(p);
+        var hasCarousel = images.length > 1;
+        var imageHtml = hasCarousel
+          ? images.map(function (src, idx) {
+            var cls = idx === 0 ? "project-card__image project-card__image--slide is-active" : "project-card__image project-card__image--slide";
+            return '<img class="' + cls + '" src="' + escapeHtml(src) + '" alt="" loading="lazy" decoding="async">';
+          }).join("")
+          : '<img class="project-card__image" src="' + escapeHtml(images[0] || "") + '" alt="" loading="lazy" decoding="async">';
+
         var demoBtn = p.demoUrl && p.demoUrl !== "#"
           ? '<a href="' + escapeHtml(p.demoUrl) + '" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">' + labels.verDemo + "</a>"
           : '<span class="btn btn-secondary btn-sm disabled">' + labels.verDemo + "</span>";
@@ -103,8 +112,8 @@
 
         col.innerHTML =
           '<article class="project-card card border-0">' +
-          '  <div class="project-card__image-wrap">' +
-          '    <img class="project-card__image" src="' + escapeHtml(p.image) + '" alt="" loading="lazy">' +
+          '  <div class="project-card__image-wrap' + (hasCarousel ? " project-card__image-wrap--carousel" : "") + '"' + (hasCarousel ? ' data-project-carousel="true" data-carousel-interval="3500"' : "") + ">" +
+          imageHtml +
           '    <span class="project-card__badge ' + badgeClass + '">' + escapeHtml(badgeText) + "</span>" +
           "  </div>" +
           '  <div class="project-card__body">' +
@@ -118,6 +127,8 @@
         grid.appendChild(col);
       });
 
+      initProjectCarousels(grid);
+
       var tooltips = grid.querySelectorAll("[data-bs-toggle=\"tooltip\"]");
       if (typeof bootstrap !== "undefined" && bootstrap.Tooltip) {
         tooltips.forEach(function (el) {
@@ -125,6 +136,84 @@
         });
       }
     }, 150);
+  }
+
+  function normalizeImages(p) {
+    if (!p) return [];
+    if (Array.isArray(p.images) && p.images.length > 0) {
+      return p.images.filter(Boolean);
+    }
+    if (p.image) return [p.image];
+    return [];
+  }
+
+  function prefersReducedMotion() {
+    try {
+      return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function initProjectCarousels(scopeEl) {
+    if (!scopeEl || prefersReducedMotion()) return;
+    var wraps = scopeEl.querySelectorAll("[data-project-carousel=\"true\"]");
+    wraps.forEach(function (wrap) {
+      if (wrap.__carouselInitialized) return;
+      wrap.__carouselInitialized = true;
+
+      var slides = wrap.querySelectorAll(".project-card__image--slide");
+      if (!slides || slides.length <= 1) return;
+
+      var intervalMs = parseInt(wrap.getAttribute("data-carousel-interval") || "3500", 10);
+      if (!intervalMs || intervalMs < 1200) intervalMs = 3500;
+
+      var index = 0;
+      var timer = null;
+      var isPaused = false;
+
+      function setActive(nextIndex) {
+        slides.forEach(function (img, i) {
+          if (i === nextIndex) img.classList.add("is-active");
+          else img.classList.remove("is-active");
+        });
+        index = nextIndex;
+      }
+
+      function tick() {
+        if (isPaused) return;
+        var next = (index + 1) % slides.length;
+        setActive(next);
+      }
+
+      function start() {
+        if (timer) return;
+        timer = setInterval(tick, intervalMs);
+      }
+
+      function stop() {
+        if (!timer) return;
+        clearInterval(timer);
+        timer = null;
+      }
+
+      wrap.addEventListener("mouseenter", function () {
+        isPaused = true;
+      });
+      wrap.addEventListener("mouseleave", function () {
+        isPaused = false;
+      });
+
+      // Pausar si la pestaña no está visible
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) stop();
+        else start();
+      });
+
+      // Asegurar estado inicial y arrancar
+      setActive(0);
+      start();
+    });
   }
 
   function escapeHtml(text) {

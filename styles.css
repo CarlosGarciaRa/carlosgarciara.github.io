@@ -524,6 +524,24 @@ html {
   transform: scale(1.05);
 }
 
+/* Carrusel simple (automático) para imágenes de proyecto */
+.project-card__image-wrap--carousel .project-card__image--slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.4s ease;
+  will-change: opacity;
+}
+
+.project-card__image-wrap--carousel .project-card__image--slide.is-active {
+  opacity: 1;
+}
+
+/* Solo la slide activa hace zoom en hover */
+.project-card:hover .project-card__image-wrap--carousel .project-card__image--slide:not(.is-active) {
+  transform: none;
+}
+
 .project-card__badge {
   position: absolute;
   top: 12px;

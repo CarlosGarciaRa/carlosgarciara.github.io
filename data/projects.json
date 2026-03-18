@@ -8,7 +8,11 @@
     "type": "enterprise",
     "categories": ["web", "mobile"],
     "tags": ["React", "React Native", "NestJS", ".NET", "TypeScript", "MongoDB"],
-    "image": "https://placehold.co/800x450/1e1b2e/a78bfa?text=Barri+Card",
+    "image": "assets/img/projects/barricard/01.png",
+    "images": [
+      "assets/img/projects/barricard/01.png",
+      "assets/img/projects/barricard/02.png"
+    ],
     "demoUrl": "https://www.barri.com/BarriAccount/",
     "repoUrl": null,
     "isFeatured": true
@@ -22,7 +26,11 @@
     "type": "personal",
     "categories": ["web"],
     "tags": ["Go", "Fiber", "Vue.js", "TypeScript", "Redis", "Docker", "FFmpeg", "HLS", "REST API"],
-    "image": "https://placehold.co/800x450/1e1b2e/c4b5fd?text=GrailStream",
+    "image": "assets/img/projects/grailstream/01.png",
+    "images": [
+      "assets/img/projects/grailstream/01.png",
+      "assets/img/projects/grailstream/02.png"
+    ],
     "demoUrl": "#",
     "repoUrl": null,
     "isFeatured": false
