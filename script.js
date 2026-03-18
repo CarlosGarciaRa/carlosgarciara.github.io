@@ -1,6 +1,6 @@
 (function () {
   var STORAGE_THEME = "portfolio-theme";
-  var DEFAULT_THEME = "violeta";
+  var DEFAULT_THEME = "obsidian-gold";
 
   // Aplicar tema guardado al cargar
   function aplicarTema(id) {
