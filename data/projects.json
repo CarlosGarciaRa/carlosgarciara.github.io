@@ -15,6 +15,20 @@
   },
   {
     "id": 2,
+    "title": "GrailStream",
+    "titleEn": "GrailStream",
+    "description": "Hub web personal para unificar catálogo (TMDB), listas en vivo (HLS/M3U8) y reproducción en el navegador. API en Go (Fiber) con Redis; análisis de contenedores con ffprobe y remux bajo demanda vía ffmpeg (MP4 fragmentado, buffers y flush progresivo, selección de pista de audio y seek). Frontend Vue 3, TypeScript y hls.js. Docker Compose. Prototipo iterado de forma acelerada con asistencia de IA.",
+    "descriptionEn": "Personal web hub to unify catalog metadata (TMDB), live playlists (HLS/M3U8) and in-browser playback. Go API (Fiber) with Redis; container inspection via ffprobe and on-demand remux through ffmpeg (fragmented MP4, chunked buffering/flushes, audio track selection and seek). Vue 3, TypeScript and hls.js frontend. Docker Compose. Rapid iteration with AI-assisted tooling (e.g. Cursor).",
+    "type": "personal",
+    "categories": ["web"],
+    "tags": ["Go", "Fiber", "Vue.js", "TypeScript", "Redis", "Docker", "FFmpeg", "HLS", "REST API"],
+    "image": "https://placehold.co/800x450/1e1b2e/c4b5fd?text=GrailStream",
+    "demoUrl": "#",
+    "repoUrl": null,
+    "isFeatured": false
+  },
+  {
+    "id": 3,
     "title": "Sistema ERP",
     "titleEn": "ERP System",
     "description": "Desarrollo de módulo contable y reportes para gestión interna. Integración con APIs de terceros y panel de administración.",
@@ -28,7 +42,7 @@
     "isFeatured": false
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "App de tareas",
     "titleEn": "Tasks App",
     "description": "Aplicación personal para gestión de tareas con sincronización en la nube y tema oscuro. Proyecto de práctica con stack moderno.",
@@ -42,7 +56,7 @@
     "isFeatured": false
   },
   {
-    "id": 4,
+    "id": 5,
     "title": "Clima móvil",
     "titleEn": "Weather Mobile",
     "description": "App móvil para consultar el clima por ubicación. Consumo de API REST y caché local.",
