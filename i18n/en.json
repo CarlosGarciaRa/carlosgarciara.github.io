@@ -32,8 +32,13 @@
   },
   "trayectoria": {
     "titulo": "Background",
-    "texto": "I've worked at consultancies, startups, and product companies: from frontend at Monoestereo and Agentus to fullstack at Daltum Systems and Bluepeople (Wallet module with React, React Native, NestJS, and .NET).",
-    "btnProyectos": "View projects"
+    "texto": "Fullstack developer with 5+ years of experience: from agency-side frontend to end-to-end products in consulting and fintech—including the Barri Card ecosystem—with Vue.js, React, React Native, NestJS, .NET, and Google Cloud Functions, delivering for clients in financial services, HR, and government.",
+    "btnVerTrayectoria": "View work history"
+  },
+  "proyectosResumen": {
+    "titulo": "Projects",
+    "texto": "I've worked on multiple projects for different clients; I also build personal projects for self-learning and small tools for my day-to-day work.",
+    "btn": "View projects"
   },
   "contacto": {
     "titulo": "Contact",
