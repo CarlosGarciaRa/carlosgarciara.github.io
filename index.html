@@ -6,58 +6,117 @@
   <title>Carlos García — Fullstack Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar.css">
 </head>
-<body class="tema-oscuro" data-bs-theme="dark" data-theme="violeta">
-  <header class="barra-superior">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-      <div class="container container--barra">
-        <a class="navbar-brand fw-semibold" href="index.html#inicio">flwry.dev</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPrincipal" aria-controls="navPrincipal" aria-expanded="false" aria-label="Abrir menú">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navPrincipal">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html#inicio" data-i18n="nav.inicio">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="proyectos.html" data-i18n="nav.proyectos">Proyectos</a></li>
-            <li class="nav-item"><a class="nav-link" href="experiencia.html" data-i18n="nav.experiencia">Historial laboral</a></li>
-          </ul>
-          <select class="form-select form-select-sm lang-selector ms-3" style="width: auto; max-width: 100px;" aria-label="Idioma">
+<body class="tema-oscuro" data-bs-theme="dark" data-theme="obsidian-gold">
+  <div class="site-sticky-root">
+    <div class="navbar-sticky-wrap sticky-top">
+      <header class="barra-superior">
+        <div class="container container--barra px-3 mt-3">
+          <nav class="navbar navbar-expand-lg navbar-dark navbar-glass rounded-pill px-2 px-sm-3" id="siteNavbar" aria-label="Principal">
+            <div class="container-fluid align-items-center px-2">
+              <a class="navbar-brand navbar-brand-glass mb-0" href="index.html#inicio">flwry.dev</a>
+              <button class="navbar-toggler navbar-toggler-glass d-lg-none shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navOffcanvas" aria-controls="navOffcanvas" aria-expanded="false" aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="d-none d-lg-flex align-items-center ms-auto gap-2 gap-xl-3">
+                <ul class="navbar-nav flex-row align-items-center gap-1 gap-xl-2 mb-0">
+                  <li class="nav-item"><a class="nav-link nav-glass-link py-2 px-2 active" href="index.html#inicio" aria-current="page" data-i18n="nav.inicio">Inicio</a></li>
+                  <li class="nav-item"><a class="nav-link nav-glass-link py-2 px-2" href="proyectos.html" data-i18n="nav.proyectos">Proyectos</a></li>
+                  <li class="nav-item"><a class="nav-link nav-glass-link py-2 px-2" href="experiencia.html" data-i18n="nav.experiencia">Historial laboral</a></li>
+                  <li class="nav-item d-flex align-items-center ms-1 ms-xl-2"><a class="btn btn-sm btn-outline-primary nav-cta-pill" href="index.html#contacto" data-i18n="nav.contacto">Contacto</a></li>
+                </ul>
+                <select class="form-select form-select-sm lang-selector" style="width: auto; max-width: 100px;" aria-label="Idioma">
+                  <option value="es">🇲🇽 ES</option>
+                  <option value="en">🇺🇸 EN</option>
+                </select>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+    </div>
+
+    <div class="offcanvas offcanvas-fullscreen nav-offcanvas" tabindex="-1" id="navOffcanvas" aria-labelledby="navOffcanvasLabel" data-bs-scroll="false">
+      <div class="offcanvas-header border-bottom border-white border-opacity-10">
+        <p class="offcanvas-title h5 mb-0 navbar-brand-glass" id="navOffcanvasLabel">flwry.dev</p>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar menú"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <nav class="nav flex-column gap-2 my-2" aria-label="Navegación móvil">
+          <a class="nav-mobile-item nav-link nav-glass-link fs-5 py-3 rounded-3 active" href="index.html#inicio" aria-current="page" data-i18n="nav.inicio">Inicio</a>
+          <a class="nav-mobile-item nav-link nav-glass-link fs-5 py-3 rounded-3" href="proyectos.html" data-i18n="nav.proyectos">Proyectos</a>
+          <a class="nav-mobile-item nav-link nav-glass-link fs-5 py-3 rounded-3" href="experiencia.html" data-i18n="nav.experiencia">Historial laboral</a>
+          <a class="nav-mobile-item btn btn-outline-primary nav-cta-pill mt-2 py-3" href="index.html#contacto" data-i18n="nav.contacto">Contacto</a>
+        </nav>
+        <div class="mt-auto pt-4 border-top border-white border-opacity-10">
+          <label class="form-label small text-white-50 mb-2" for="lang-selector-offcanvas">Idioma</label>
+          <select id="lang-selector-offcanvas" class="form-select form-select-sm lang-selector lang-selector--offcanvas" aria-label="Idioma">
             <option value="es">🇲🇽 ES</option>
             <option value="en">🇺🇸 EN</option>
           </select>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
 
   <div class="pagina-inicio">
-    <!-- Bloque: presentación (hero) -->
-    <section id="inicio" class="container container--barra text-center pt-5 pt-md-5 pb-5 mt-4">
-      <!-- Placeholder: sustituir por tu foto. Recomendado: retrato, relación 4:5 o 1:1, mínimo 400px de ancho. -->
-      <img src="assets/avatar.png" alt="Carlos García" class="bloque__avatar mx-auto mb-4 d-block">
-      <h1 class="bloque__titulo-principal display-5 fw-bold mb-2" data-i18n="hero.saludo">Hola, soy Carlos</h1>
-      <p class="bloque__subtitulo fs-4 mb-3" data-i18n="hero.subtitulo">Fullstack Developer</p>
-      <p class="bloque__intro mb-4" data-i18n="hero.intro">
-        Más de cinco años como desarrollador fullstack: experiencia sólida en backend (APIs, servicios, bases de datos) y en frontend (interfaces web y móvil). Me gusta abordar el ciclo completo y resolver problemas de extremo a extremo.
-      </p>
-      <div class="d-flex flex-wrap gap-2 justify-content-center">
-        <a href="#contacto" class="btn btn-primary" data-i18n="hero.btnContacto">Contacto</a>
-        <a href="proyectos.html" class="btn btn-outline-light" data-i18n="hero.btnProyectos">Ver proyectos</a>
-        <a href="assets/Carlos García - CV.pdf" id="cv-download-link" class="btn btn-outline-primary" target="_blank" rel="noopener noreferrer" data-i18n="cv.descargar">Descargar CV</a>
+    <section id="inicio" class="hero-section">
+      <div class="container container--barra text-center pt-4">
+        <img src="assets/img/avatar.png" alt="Carlos García" class="bloque__avatar mx-auto mb-4 d-block">
+        <h1 class="bloque__titulo-principal display-4 fw-bold mb-3" data-i18n="hero.saludo">Hola, soy Carlos</h1>
+        <div class="hero-tech-marquee mb-4 mx-auto" role="presentation" aria-hidden="true">
+          <div class="hero-tech-marquee__inner" id="hero-tech-marquee-track"></div>
+        </div>
+        <p class="bloque__intro mb-4 mx-auto" style="max-width: 42rem;" data-i18n="hero.intro">
+          Más de cinco años como desarrollador fullstack: experiencia sólida en backend (APIs, servicios, bases de datos) y en frontend (interfaces web y móvil). Me gusta abordar el ciclo completo y resolver problemas de extremo a extremo.
+        </p>
+        <div class="d-flex flex-wrap gap-2 justify-content-center pb-2">
+          <a href="#contacto" class="btn btn-outline-primary" data-i18n="hero.btnContacto">Contacto</a>
+          <a href="proyectos.html" class="btn btn-outline-primary" data-i18n="hero.btnProyectos">Ver proyectos</a>
+          <a href="assets/docs/cv-es.pdf" id="cv-download-link" class="btn btn-outline-primary" target="_blank" rel="noopener noreferrer" data-i18n="cv.descargar">Descargar CV</a>
+        </div>
       </div>
     </section>
 
-    <!-- Bloque: valor en una línea -->
-    <section class="container container--barra text-center py-4">
-      <p class="bloque__frase mb-0" data-i18n="tagline.texto">Construyo interfaces y aplicaciones que escalan, desde frontend hasta backend e infraestructura.</p>
+    <section id="stats" class="container container--barra py-5 reveal-section" aria-labelledby="stats-titulo">
+      <h2 id="stats-titulo" class="bloque__titulo-seccion fs-2 fw-bold mb-4 text-start" data-i18n="stats.titulo">En números</h2>
+      <div class="stats-grid">
+        <div class="stats-item surface-card surface-card--interactive">
+          <i class="bi bi-clock-history stats-item__icon" aria-hidden="true"></i>
+          <div>
+            <div class="stats-item__value" data-i18n="stats.expValor">5+</div>
+            <p class="stats-item__label mb-0" data-i18n="stats.expEtiqueta">Años de experiencia</p>
+          </div>
+        </div>
+        <div class="stats-item surface-card surface-card--interactive">
+          <i class="bi bi-kanban stats-item__icon" aria-hidden="true"></i>
+          <div>
+            <div class="stats-item__value" data-i18n="stats.projValor">15+</div>
+            <p class="stats-item__label mb-0" data-i18n="stats.projEtiqueta">Proyectos completados</p>
+          </div>
+        </div>
+        <div class="stats-item surface-card surface-card--interactive">
+          <i class="bi bi-layers-half stats-item__icon" aria-hidden="true"></i>
+          <div>
+            <div class="stats-item__value" data-i18n="stats.techValor">10+</div>
+            <p class="stats-item__label mb-0" data-i18n="stats.techEtiqueta">Tecnologías con las que he trabajado</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Bloque: servicios -->
-    <section id="servicios" class="container container--barra py-5">
+    <section class="tagline-band reveal-section" aria-hidden="false">
+      <div class="container container--barra text-center">
+        <p class="bloque__frase mb-0" data-i18n="tagline.texto">Construyo interfaces y aplicaciones que escalan, desde frontend hasta backend e infraestructura.</p>
+      </div>
+    </section>
+
+    <section id="servicios" class="container container--barra py-5 reveal-section">
       <h2 class="bloque__titulo-seccion fs-2 fw-bold mb-4" data-i18n="servicios.titulo">Servicios</h2>
       <ul class="lista-oferta mb-0" data-i18n-array="servicios.items">
         <li><span data-i18n-text>Desarrollo frontend (Vue.js, React, React Native)</span></li>
@@ -68,65 +127,129 @@
       </ul>
     </section>
 
-    <!-- Bloque: stack técnico (una card por columna) -->
-    <section id="tecnologias" class="container container--barra py-5">
+    <section id="tecnologias" class="container container--barra py-5 reveal-section">
       <h2 class="bloque__titulo-seccion fs-2 fw-bold mb-4" data-i18n="stack.titulo">Stack técnico</h2>
       <div class="row g-4">
         <div class="col-md-4">
-          <div class="stack-card stack-card--con-esquina card border-0 h-100 p-4 position-relative">
+          <div class="stack-card stack-card--con-esquina surface-card surface-card--interactive card h-100 p-4 position-relative">
             <i class="devicon-react-original stack-card__icono-esquina" aria-hidden="true"></i>
-            <h3 class="stack-item__titulo fs-5 fw-semibold mb-3" data-i18n="stack.frontend">Frontend</h3>
-            <ul class="stack-lista list-unstyled mb-0 small">
-              <li class="stack-lista__item"><i class="devicon-vuejs-plain stack-icon" aria-hidden="true"></i> Vue.js</li>
-              <li class="stack-lista__item"><i class="devicon-react-original stack-icon" aria-hidden="true"></i> React</li>
-              <li class="stack-lista__item"><i class="devicon-react-original stack-icon" aria-hidden="true"></i> React Native</li>
-              <li class="stack-lista__item"><i class="devicon-typescript-plain stack-icon" aria-hidden="true"></i> TypeScript</li>
-              <li class="stack-lista__item"><i class="devicon-javascript-plain stack-icon" aria-hidden="true"></i> JavaScript</li>
-            </ul>
+            <h3 class="stack-item__titulo fs-5 fw-semibold mb-4" data-i18n="stack.frontend">Frontend</h3>
+            <div class="skill-pills">
+              <span class="skill-pill"><i class="devicon-vuejs-plain stack-icon" aria-hidden="true"></i> Vue.js</span>
+              <span class="skill-pill"><i class="devicon-react-original stack-icon" aria-hidden="true"></i> React</span>
+              <span class="skill-pill"><i class="devicon-react-original stack-icon" aria-hidden="true"></i> React Native</span>
+              <span class="skill-pill"><i class="devicon-typescript-plain stack-icon" aria-hidden="true"></i> TypeScript</span>
+              <span class="skill-pill"><i class="devicon-javascript-plain stack-icon" aria-hidden="true"></i> JavaScript</span>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="stack-card stack-card--con-esquina card border-0 h-100 p-4 position-relative">
+          <div class="stack-card stack-card--con-esquina surface-card surface-card--interactive card h-100 p-4 position-relative">
             <i class="devicon-nestjs-plain stack-card__icono-esquina" aria-hidden="true"></i>
-            <h3 class="stack-item__titulo fs-5 fw-semibold mb-3" data-i18n="stack.backend">Backend</h3>
-            <ul class="stack-lista list-unstyled mb-0 small">
-              <li class="stack-lista__item"><i class="devicon-nestjs-plain stack-icon" aria-hidden="true"></i> NestJS</li>
-              <li class="stack-lista__item"><i class="devicon-dotnetcore-plain stack-icon" aria-hidden="true"></i> .NET</li>
-              <li class="stack-lista__item"><i class="devicon-fastapi-plain stack-icon" aria-hidden="true"></i> FastAPI</li>
-              <li class="stack-lista__item"><i class="devicon-googlecloud-plain stack-icon" aria-hidden="true"></i> Google Cloud Functions</li>
-            </ul>
+            <h3 class="stack-item__titulo fs-5 fw-semibold mb-4" data-i18n="stack.backend">Backend</h3>
+            <div class="skill-pills">
+              <span class="skill-pill"><i class="devicon-nestjs-plain stack-icon" aria-hidden="true"></i> NestJS</span>
+              <span class="skill-pill"><i class="devicon-dotnetcore-plain stack-icon" aria-hidden="true"></i> .NET</span>
+              <span class="skill-pill"><i class="devicon-fastapi-plain stack-icon" aria-hidden="true"></i> FastAPI</span>
+              <span class="skill-pill"><i class="devicon-googlecloud-plain stack-icon" aria-hidden="true"></i> Google Cloud Functions</span>
+            </div>
           </div>
         </div>
         <div class="col-md-4">
-          <div class="stack-card stack-card--con-esquina card border-0 h-100 p-4 position-relative">
+          <div class="stack-card stack-card--con-esquina surface-card surface-card--interactive card h-100 p-4 position-relative">
             <i class="devicon-docker-plain stack-card__icono-esquina" aria-hidden="true"></i>
-            <h3 class="stack-item__titulo fs-5 fw-semibold mb-3" data-i18n="stack.datos">Datos y DevOps</h3>
-            <ul class="stack-lista list-unstyled mb-0 small">
-              <li class="stack-lista__item"><i class="devicon-postgresql-plain stack-icon" aria-hidden="true"></i> PostgreSQL</li>
-              <li class="stack-lista__item"><i class="devicon-mongodb-plain stack-icon" aria-hidden="true"></i> MongoDB</li>
-              <li class="stack-lista__item"><i class="devicon-googlecloud-plain stack-icon" aria-hidden="true"></i> Firestore</li>
-              <li class="stack-lista__item"><i class="devicon-docker-plain stack-icon" aria-hidden="true"></i> Docker</li>
-              <li class="stack-lista__item"><i class="devicon-azure-plain stack-icon" aria-hidden="true"></i> Azure</li>
-              <li class="stack-lista__item"><i class="devicon-googlecloud-plain stack-icon" aria-hidden="true"></i> GCP</li>
-            </ul>
+            <h3 class="stack-item__titulo fs-5 fw-semibold mb-4" data-i18n="stack.tools">Herramientas e infra</h3>
+            <div class="skill-pills">
+              <span class="skill-pill"><i class="devicon-postgresql-plain stack-icon" aria-hidden="true"></i> PostgreSQL</span>
+              <span class="skill-pill"><i class="devicon-mongodb-plain stack-icon" aria-hidden="true"></i> MongoDB</span>
+              <span class="skill-pill"><i class="devicon-googlecloud-plain stack-icon" aria-hidden="true"></i> Firestore</span>
+              <span class="skill-pill"><i class="devicon-docker-plain stack-icon" aria-hidden="true"></i> Docker</span>
+              <span class="skill-pill"><i class="devicon-azure-plain stack-icon" aria-hidden="true"></i> Azure</span>
+              <span class="skill-pill"><i class="devicon-googlecloud-plain stack-icon" aria-hidden="true"></i> GCP</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Bloque: trayectoria + CTA -->
-    <section class="container container--barra py-5">
+    <section id="trayectoria" class="container container--barra py-5 reveal-section">
       <h2 class="bloque__titulo-seccion fs-2 fw-bold mb-4 text-start" data-i18n="trayectoria.titulo">Trayectoria</h2>
+      <div class="bento-grid mb-4">
+        <article class="bento-item--featured surface-card surface-card--interactive bento-card bento-card--featured">
+          <p class="bento-card__meta mb-1">
+            <span data-i18n="experiencia.bluepeople.fechaInicio">02/2026</span> — <span data-i18n="experiencia.actualidad">Actualidad</span>
+          </p>
+          <h3 class="bento-card__title" data-i18n="experiencia.bluepeople.empresa">Bluepeople – Dolfintech</h3>
+          <p class="small mb-2 opacity-75" data-i18n="experiencia.bluepeople.rol">Desarrollador Fullstack</p>
+          <p class="small mb-2">
+            <span data-i18n="experiencia.bluepeople.empresaDetalle">Barri Money Transfer</span>
+            · <a href="https://www.barri.com/BarriAccount/" target="_blank" rel="noopener noreferrer" class="experiencia-card__link" data-i18n="experiencia.bluepeople.proyectoNombre">Barri Card — tarjeta y billetera digital</a>
+          </p>
+          <p class="bento-card__body mb-0" data-i18n="experiencia.bluepeople.descripcion">Desarrollo Fullstack del producto de tarjeta y billetera digital (Barri Card).</p>
+        </article>
+
+        <a href="experiencia.html#exp-daltum" class="bento-item--sm bento-item--a d-block text-decoration-none text-reset h-100">
+          <article class="surface-card surface-card--interactive bento-card bento-card--compact h-100">
+            <i class="bi bi-building bento-card__icon" aria-hidden="true"></i>
+            <h3 class="bento-card__title" data-i18n="experiencia.daltum.empresa">Daltum Systems</h3>
+            <p class="bento-card__meta mb-0">
+              <span data-i18n="experiencia.daltum.fechaInicio">02/2024</span> — <span data-i18n="experiencia.daltum.fechaFin">01/2026</span>
+            </p>
+            <span class="bento-card__link" data-i18n="trayectoria.enlaceHistorial">Ver en historial →</span>
+          </article>
+        </a>
+
+        <a href="experiencia.html#exp-agentus" class="bento-item--sm bento-item--b d-block text-decoration-none text-reset h-100">
+          <article class="surface-card surface-card--interactive bento-card bento-card--compact h-100">
+            <i class="bi bi-building bento-card__icon" aria-hidden="true"></i>
+            <h3 class="bento-card__title" data-i18n="experiencia.anaGPT.empresa">Agentus</h3>
+            <p class="bento-card__meta mb-0">
+              <span data-i18n="experiencia.anaGPT.fechaInicio">08/2023</span> — <span data-i18n="experiencia.anaGPT.fechaFin">02/2024</span>
+            </p>
+            <span class="bento-card__link" data-i18n="trayectoria.enlaceHistorial">Ver en historial →</span>
+          </article>
+        </a>
+
+        <a href="experiencia.html#exp-monoestereo" class="bento-item--sm bento-item--c d-block text-decoration-none text-reset h-100">
+          <article class="surface-card surface-card--interactive bento-card bento-card--compact h-100">
+            <i class="bi bi-building bento-card__icon" aria-hidden="true"></i>
+            <h3 class="bento-card__title" data-i18n="experiencia.monoestereo.empresa">Monoestereo</h3>
+            <p class="bento-card__meta mb-0">
+              <span data-i18n="experiencia.monoestereo.fechaInicio">10/2020</span> — <span data-i18n="experiencia.monoestereo.fechaFin">07/2023</span>
+            </p>
+            <span class="bento-card__link" data-i18n="trayectoria.enlaceHistorial">Ver en historial →</span>
+          </article>
+        </a>
+      </div>
       <div class="text-center">
-        <p class="bloque__texto mb-4" data-i18n="trayectoria.texto">
-          He trabajado en consultorías, startups y empresas de producto: desde frontend en Monoestereo y Agentus hasta fullstack en Daltum Systems y Bluepeople (módulo Wallet con React, React Native, NestJS y .NET).
-        </p>
-        <a href="proyectos.html" class="btn btn-outline-primary" data-i18n="trayectoria.btnProyectos">Ver proyectos</a>
+        <a href="experiencia.html" class="btn btn-outline-primary" data-i18n="trayectoria.btnVerTrayectoria">Ver trayectoria</a>
       </div>
     </section>
 
-    <!-- Bloque: contacto (card 60% + 40%) -->
-    <section id="contacto" class="container container--barra py-5 pb-5">
+    <section id="proyectos-inicio" class="container container--barra py-5 reveal-section">
+      <h2 class="bloque__titulo-seccion fs-2 fw-bold mb-4 text-start" data-i18n="proyectosResumen.titulo">Proyectos</h2>
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-5 order-lg-2">
+          <div class="surface-card surface-card--interactive proyectos-resumen-card h-100 d-flex flex-column">
+            <p class="bloque__texto mb-3" data-i18n="proyectosResumen.texto">
+              He trabajado en múltiples proyectos para distintos clientes; además desarrollo proyectos personales por autoaprendizaje y herramientas pensadas para mi uso diario.
+            </p>
+            <ul class="proyectos-resumen-card__list mb-4" data-i18n-array="proyectosResumen.puntos">
+              <li><span data-i18n-text>Productos enterprise y clientes en fintech, RRHH y sector público</span></li>
+              <li><span data-i18n-text>Proyectos personales, experimentación y herramientas de día a día</span></li>
+              <li><span data-i18n-text>Web, móvil y backend con enfoque en APIs y despliegue</span></li>
+            </ul>
+            <a href="proyectos.html" class="btn btn-outline-primary mt-auto align-self-start" data-i18n="proyectosResumen.btn">Ver proyectos</a>
+          </div>
+        </div>
+        <div class="col-lg-7 order-lg-1">
+          <div id="home-projects-preview" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3"></div>
+          <p id="home-projects-fallback" class="bloque__texto small opacity-75 mt-3 mb-0 d-none text-center" data-i18n="proyectosResumen.deco">Catálogo filtrable por tipo y stack: de trabajo enterprise a experimentos personales.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="container container--barra py-5 pb-5 reveal-section">
       <h2 class="bloque__titulo-seccion fs-2 fw-bold mb-4 text-start" data-i18n="contacto.titulo">Contacto</h2>
       <div class="contacto-card card border-0 p-4 p-md-5">
         <div class="row g-4 g-lg-5 align-items-start">
@@ -147,7 +270,7 @@
                 <label for="contacto-mensaje" class="form-label formulario-contacto__label" data-i18n="contacto.form.mensaje">Mensaje</label>
                 <textarea class="form-control formulario-contacto__input formulario-contacto__textarea" id="contacto-mensaje" name="mensaje" rows="4" required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary" data-i18n="contacto.form.enviar">Enviar</button>
+              <button type="submit" class="btn btn-outline-primary" data-i18n="contacto.form.enviar">Enviar</button>
             </form>
             <p class="formulario-contacto__ayuda mt-4 mb-0 small opacity-75"><span data-i18n="contacto.ayuda">Directo:</span> <a href="mailto:carlos.garcia.ra@outlook.com" class="formulario-contacto__link">carlos.garcia.ra@outlook.com</a></p>
           </div>
@@ -162,9 +285,28 @@
       <p class="mb-0 pie-sitio__texto"><span id="footer-credito"></span></p>
     </div>
   </footer>
+  </div>
+
+  <!--
+  <aside class="paleta-barra" aria-label="Selector de tema">
+    <div class="paleta-barra__titulo">Tema</div>
+    <button type="button" class="paleta-barra__btn" data-theme="navy" aria-label="Tema navy"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="azul-frio" aria-label="Tema azul frío"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="verde" aria-label="Tema verde"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="ambar" aria-label="Tema ámbar"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="violeta" aria-label="Tema violeta"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="cian" aria-label="Tema cian"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="rosa" aria-label="Tema rosa"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="obsidian-gold" aria-label="Tema obsidian gold"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="deep-cyan" aria-label="Tema deep cyan"></button>
+  </aside>
+  -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="navbar.js"></script>
   <script src="i18n.js"></script>
+  <script src="project-card-render.js"></script>
+  <script src="home.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

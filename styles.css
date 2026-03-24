@@ -1,6 +1,9 @@
 /* ===== Variables globales (no dependen de la paleta) ===== */
 :root {
   --font-sans: "Epilogue", sans-serif;
+  --font-display: "Syne", "Epilogue", sans-serif;
+  --section-y: clamp(3rem, 6vw, 5rem);
+  --card-radius-home: 20px;
 }
 
 /* ===== Paletas: solo se cambian estas variables por tema ===== */
@@ -84,6 +87,17 @@
   --border: #3d4152;
 }
 
+/* Tema por defecto del portafolio: fondo GitHub-dark + acento cian */
+[data-theme="deep-cyan"] {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --text-primary: #e6edf3;
+  --accent: #22d3ee;
+  --accent-hover: #67e8f9;
+  --border: #30363d;
+}
+
 /* Fallback si no hay data-theme (usa navy) */
 body:not([data-theme]) {
   --bg-primary: #0a1128;
@@ -100,9 +114,10 @@ body {
   font-family: var(--font-sans);
 }
 
-/* ===== Base: scroll con navbar fija ===== */
+/* ===== Base: scroll con navbar flotante (pill + sticky offset) ===== */
 html {
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 6rem;
+  background-color: transparent;
 }
 
 .container--narrow {
@@ -117,13 +132,14 @@ html {
 
 /* ===== Tema: fondos y gradientes (usan vars de paleta) ===== */
 .tema-oscuro {
+  /* Evita franja sólida de Bootstrap (--bs-body-bg) bajo el gradiente */
+  --bs-body-bg: transparent;
+  /* Altura aproximada franja nav (mt-3 + pill + offset sticky): el hero sube para pintar hasta el borde superior */
+  --hero-overlap: clamp(4.75rem, 12vw, 6.75rem);
   background: linear-gradient(165deg, var(--bg-primary) 0%, var(--bg-secondary) 35%, var(--bg-tertiary) 70%, var(--bg-primary) 100%);
   background-attachment: fixed;
+  background-color: transparent;
   min-height: 100vh;
-}
-
-.tema-oscuro .navbar {
-  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%) !important;
 }
 
 .pie-sitio {
@@ -196,8 +212,8 @@ html {
   background: var(--accent);
 }
 
-/* Stack cards */
-.stack-card {
+/* Stack cards (sin .surface-card: estilo clásico; con .surface-card: mismo borde/glass que proyectos/bento) */
+.stack-card:not(.surface-card) {
   background-color: var(--bg-secondary);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
@@ -425,18 +441,27 @@ html {
 .paleta-barra__btn[data-theme="cian"] { background: linear-gradient(135deg, #0a0f14 50%, #22d3ee 50%); }
 .paleta-barra__btn[data-theme="rosa"] { background: linear-gradient(135deg, #0f0d13 50%, #ec4899 50%); }
 .paleta-barra__btn[data-theme="obsidian-gold"] { background: linear-gradient(135deg, #282c3c 50%, #e0a61a 50%); }
+.paleta-barra__btn[data-theme="deep-cyan"] { background: linear-gradient(135deg, #0d1117 50%, #22d3ee 50%); }
 
-/* Cards de experiencia */
-.experiencia-card {
+/* Cards de experiencia (vista historial: mismo borde/hover que proyectos/stack vía .surface-card) */
+.experiencia-card:not(.surface-card) {
   background-color: var(--bg-secondary);
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.experiencia-card:hover {
+.experiencia-card:not(.surface-card):hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+
+.experiencia-card.surface-card {
+  transition: transform 0.2s, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.tema-oscuro .experiencia-card.surface-card.surface-card--interactive:hover {
+  transform: translateY(-2px);
 }
 
 .experiencia-card h2 {
@@ -487,23 +512,34 @@ html {
   transform: scale(0.98);
 }
 
-.project-card {
-  border-radius: 20px;
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+/* Superficie tipo glass (proyectos, bento, stack en inicio, stats, CTA) */
+.surface-card {
+  border-radius: var(--card-radius-home);
   background: color-mix(in srgb, var(--bg-secondary) 85%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.project-card:hover {
+/*
+ * Borde: Bootstrap .border-0 y .card usan !important / variables que anulaban el borde.
+ * Especificidad + !important para que siempre gane sobre utilidades del framework.
+ */
+.tema-oscuro .surface-card {
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
+.tema-oscuro .surface-card.surface-card--interactive:hover {
+  border-color: var(--accent) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.project-card {
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card__image-wrap {
@@ -522,6 +558,24 @@ html {
 
 .project-card:hover .project-card__image {
   transform: scale(1.05);
+}
+
+/* Carrusel simple (automático) para imágenes de proyecto */
+.project-card__image-wrap--carousel .project-card__image--slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.4s ease;
+  will-change: opacity;
+}
+
+.project-card__image-wrap--carousel .project-card__image--slide.is-active {
+  opacity: 1;
+}
+
+/* Solo la slide activa hace zoom en hover */
+.project-card:hover .project-card__image-wrap--carousel .project-card__image--slide:not(.is-active) {
+  transform: none;
 }
 
 .project-card__badge {
@@ -550,6 +604,7 @@ html {
   flex: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .project-card__title {
@@ -581,18 +636,69 @@ html {
   opacity: 0.85;
   font-size: 0.9rem;
   line-height: 1.5;
-  margin-bottom: 1rem;
-  flex: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  margin-bottom: 0.2rem;
+  flex: 0 0 auto;
+  min-height: calc(0.9rem * 1.5 * 5);
+  max-height: calc(0.9rem * 1.5 * 5);
   overflow: hidden;
+  text-overflow: clip;
+  position: relative;
+  z-index: 1;
+  transition: max-height 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card.is-description-expanded .project-card__description {
+  max-height: 24rem;
+}
+
+.project-card.is-description-unlimited .project-card__description {
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+.project-card.is-description-unlimited .project-card__description::after {
+  display: none;
 }
 
 .project-card__actions {
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+.project-card__toggle-description {
+  align-self: flex-start;
+  margin-bottom: 0.85rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--text-primary) 68%, transparent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  font-size: 0.82rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.project-card__toggle-description:hover,
+.project-card__toggle-description:focus-visible {
+  color: var(--text-primary);
+  opacity: 0.95;
+}
+
+.project-card__toggle-description:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 75%, white);
+  outline-offset: 2px;
+}
+
+.project-card:not(.is-description-truncated) .project-card__toggle-description {
+  display: none;
 }
 
 .project-card__actions .btn {
@@ -609,4 +715,355 @@ html {
   background-color: var(--accent);
   border-color: var(--accent);
   color: var(--text-primary);
+}
+
+/* ===== Inicio: hero, stats, bento trayectoria, skills, reveal ===== */
+/* Por debajo del navbar (z-index del sticky); el hero no tapa la barra al subir con margin negativo */
+.pagina-inicio {
+  position: relative;
+  z-index: 0;
+}
+
+.hero-section {
+  position: relative;
+  z-index: 0;
+  margin-top: calc(-1 * var(--hero-overlap));
+  padding-top: calc(clamp(4rem, 12vw, 7rem) + var(--hero-overlap));
+  padding-bottom: clamp(3rem, 8vw, 5rem);
+  padding-left: 0;
+  padding-right: 0;
+  /* Base local alineada al gradiente del body + halo radial (misma sensación que antes, hasta arriba del viewport) */
+  background:
+    radial-gradient(
+      ellipse 115% 85% at 50% -22%,
+      color-mix(in srgb, var(--accent) 14%, transparent),
+      transparent 58%
+    ),
+    linear-gradient(
+      165deg,
+      var(--bg-primary) 0%,
+      var(--bg-secondary) 32%,
+      color-mix(in srgb, var(--bg-tertiary) 70%, transparent) 58%,
+      transparent 82%
+    );
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+}
+
+.hero-section .bloque__titulo-principal {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.hero-tech-marquee {
+  max-width: min(100%, 720px);
+  overflow: hidden;
+  padding: 0.35rem 0;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.hero-tech-marquee__inner {
+  display: flex;
+  width: max-content;
+  animation: hero-tech-marquee-scroll 48s linear infinite;
+}
+
+.hero-tech-marquee__inner.hero-tech-marquee__inner--static {
+  animation: none;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.25rem;
+}
+
+.hero-tech-marquee__group {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 0.25rem 1.25rem;
+  flex-shrink: 0;
+}
+
+.hero-tech-marquee__icon {
+  font-size: 2.35rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.88;
+}
+
+.hero-tech-marquee__icon .colored {
+  color: var(--accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-tech-marquee__inner {
+    animation: none;
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 1.25rem;
+  }
+
+  .hero-tech-marquee__group {
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@keyframes hero-tech-marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.tagline-band {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  background: color-mix(in srgb, var(--bg-secondary) 35%, transparent);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.stats-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem 1.35rem;
+  text-align: left;
+}
+
+.stats-item__icon {
+  font-size: 1.75rem;
+  color: var(--accent);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.stats-item__value {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.stats-item__label {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  opacity: 0.8;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.skills-group__title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  opacity: 0.65;
+  margin-bottom: 0.75rem;
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg-tertiary) 60%, transparent);
+  color: var(--text-primary);
+  cursor: default;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.skill-pill:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-tertiary));
+  color: var(--text-primary);
+}
+
+.skill-pill .stack-icon {
+  font-size: 1.1rem;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    gap: 1rem;
+  }
+
+  .bento-item--featured {
+    grid-column: 1 / span 8;
+    grid-row: 1 / span 2;
+  }
+
+  .bento-item--a {
+    grid-column: 9 / span 4;
+    grid-row: 1;
+  }
+
+  .bento-item--b {
+    grid-column: 9 / span 4;
+    grid-row: 2;
+  }
+
+  .bento-item--c {
+    grid-column: 1 / span 4;
+    grid-row: 3;
+  }
+}
+
+.bento-card {
+  padding: 1.25rem 1.35rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento-card--compact {
+  min-height: 120px;
+}
+
+.bento-card--compact .bento-card__link {
+  margin-top: auto;
+  align-self: flex-start;
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.bento-card--compact .bento-card__link:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+.bento-card__meta {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  opacity: 0.65;
+}
+
+.bento-card__icon {
+  font-size: 1.5rem;
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+.bento-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0.35rem 0 0.15rem;
+  line-height: 1.3;
+}
+
+.bento-card--featured .bento-card__title {
+  font-size: 1.2rem;
+}
+
+.bento-card__body {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  opacity: 0.88;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.bento-card--featured .bento-card__body {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 767.98px) {
+  .bento-card--featured .bento-card__body {
+    -webkit-line-clamp: unset;
+  }
+}
+
+.proyectos-resumen-card {
+  padding: 1.5rem 1.75rem;
+}
+
+.proyectos-resumen-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.proyectos-resumen-card__list li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  opacity: 0.88;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.proyectos-resumen-card__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.reveal-section {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal-section.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

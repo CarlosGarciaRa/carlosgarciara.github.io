@@ -2,7 +2,8 @@
   "nav": {
     "inicio": "Inicio",
     "proyectos": "Proyectos",
-    "experiencia": "Historial laboral"
+    "experiencia": "Historial laboral",
+    "contacto": "Contacto"
   },
   "hero": {
     "saludo": "Hola, soy Carlos",
@@ -10,6 +11,15 @@
     "intro": "Más de cinco años como desarrollador fullstack: experiencia sólida en backend (APIs, servicios, bases de datos) y en frontend (interfaces web y móvil). Me gusta abordar el ciclo completo y resolver problemas de extremo a extremo.",
     "btnContacto": "Contacto",
     "btnProyectos": "Ver proyectos"
+  },
+  "stats": {
+    "titulo": "En números",
+    "expValor": "5+",
+    "expEtiqueta": "Años de experiencia",
+    "projValor": "15+",
+    "projEtiqueta": "Proyectos completados",
+    "techValor": "10+",
+    "techEtiqueta": "Tecnologías con las que he trabajado"
   },
   "tagline": {
     "texto": "Construyo interfaces y aplicaciones que escalan, desde frontend hasta backend e infraestructura."
@@ -28,12 +38,25 @@
     "titulo": "Stack técnico",
     "frontend": "Frontend",
     "backend": "Backend",
-    "datos": "Datos y DevOps"
+    "datos": "Datos y DevOps",
+    "tools": "Herramientas e infra"
   },
   "trayectoria": {
     "titulo": "Trayectoria",
-    "texto": "He trabajado en consultorías, startups y empresas de producto: desde frontend en Monoestereo y Agentus hasta fullstack en Daltum Systems y Bluepeople (módulo Wallet con React, React Native, NestJS y .NET).",
-    "btnProyectos": "Ver proyectos"
+    "texto": "Desarrollador fullstack con más de cinco años: desde frontend en agencia hasta productos end-to-end en consultoría y fintech —incluido el ecosistema Barri Card— con Vue.js, React, React Native, NestJS, .NET y Google Cloud Functions, y entregas para clientes en sectores financiero, de RRHH y gobierno.",
+    "btnVerTrayectoria": "Ver trayectoria",
+    "enlaceHistorial": "Ver en historial →"
+  },
+  "proyectosResumen": {
+    "titulo": "Proyectos",
+    "texto": "He trabajado en múltiples proyectos para distintos clientes; además desarrollo proyectos personales por autoaprendizaje y herramientas pensadas para mi uso diario.",
+    "btn": "Ver proyectos",
+    "deco": "Catálogo filtrable por tipo y stack: de trabajo enterprise a experimentos personales.",
+    "puntos": [
+      "Productos enterprise y clientes en fintech, RRHH y sector público",
+      "Proyectos personales, experimentación y herramientas de día a día",
+      "Web, móvil y backend con enfoque en APIs y despliegue"
+    ]
   },
   "contacto": {
     "titulo": "Contacto",

@@ -41,6 +41,10 @@
     }, obj);
   }
 
+  window.portfolioGetI18n = function (path) {
+    return getNestedValue(translations, path);
+  };
+
   // Aplicar traducciones a elementos con data-i18n
   function applyTranslations() {
     var elements = document.querySelectorAll("[data-i18n]");
@@ -80,8 +84,8 @@
     var cvLinks = document.querySelectorAll("#cv-download-link, #cv-download-link-experiencia");
     cvLinks.forEach(function (link) {
       var cvPath = currentLang === "en" 
-        ? "assets/Carlos García - CV_E.pdf"
-        : "assets/Carlos García - CV.pdf";
+        ? "assets/docs/cv-en.pdf"
+        : "assets/docs/cv-es.pdf";
       link.setAttribute("href", cvPath);
     });
 
@@ -111,6 +115,7 @@
     // Notificar a otros módulos (ej. proyectos) que el idioma cambió
     try {
       window.dispatchEvent(new CustomEvent("portfolio:langChange", { detail: { lang: currentLang } }));
+      window.dispatchEvent(new CustomEvent("portfolio:translationsReady", { detail: { lang: currentLang } }));
     } catch (e) {}
   }
 

@@ -6,32 +6,61 @@
   <title>Proyectos — Carlos García</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="navbar.css">
 </head>
-<body class="tema-oscuro" data-bs-theme="dark" data-theme="violeta">
-  <header class="barra-superior">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-      <div class="container container--barra">
-        <a class="navbar-brand fw-semibold" href="index.html#inicio">flwry.dev</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPrincipal" aria-controls="navPrincipal" aria-expanded="false" aria-label="Abrir menú">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navPrincipal">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="index.html#inicio" data-i18n="nav.inicio">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link active" href="proyectos.html" data-i18n="nav.proyectos">Proyectos</a></li>
-            <li class="nav-item"><a class="nav-link" href="experiencia.html" data-i18n="nav.experiencia">Historial laboral</a></li>
-          </ul>
-          <select class="form-select form-select-sm lang-selector ms-3" style="width: auto; max-width: 100px;" aria-label="Idioma">
+<body class="tema-oscuro" data-bs-theme="dark" data-theme="obsidian-gold">
+  <div class="site-sticky-root">
+    <div class="navbar-sticky-wrap sticky-top">
+      <header class="barra-superior">
+        <div class="container container--barra px-3 mt-3">
+          <nav class="navbar navbar-expand-lg navbar-dark navbar-glass rounded-pill px-2 px-sm-3" id="siteNavbar" aria-label="Principal">
+            <div class="container-fluid align-items-center px-2">
+              <a class="navbar-brand navbar-brand-glass mb-0" href="index.html#inicio">flwry.dev</a>
+              <button class="navbar-toggler navbar-toggler-glass d-lg-none shadow-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#navOffcanvas" aria-controls="navOffcanvas" aria-expanded="false" aria-label="Abrir menú">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="d-none d-lg-flex align-items-center ms-auto gap-2 gap-xl-3">
+                <ul class="navbar-nav flex-row align-items-center gap-1 gap-xl-2 mb-0">
+                  <li class="nav-item"><a class="nav-link nav-glass-link py-2 px-2" href="index.html#inicio" data-i18n="nav.inicio">Inicio</a></li>
+                  <li class="nav-item"><a class="nav-link nav-glass-link py-2 px-2 active" href="proyectos.html" aria-current="page" data-i18n="nav.proyectos">Proyectos</a></li>
+                  <li class="nav-item"><a class="nav-link nav-glass-link py-2 px-2" href="experiencia.html" data-i18n="nav.experiencia">Historial laboral</a></li>
+                  <li class="nav-item d-flex align-items-center ms-1 ms-xl-2"><a class="btn btn-sm btn-outline-primary nav-cta-pill" href="index.html#contacto" data-i18n="nav.contacto">Contacto</a></li>
+                </ul>
+                <select class="form-select form-select-sm lang-selector" style="width: auto; max-width: 100px;" aria-label="Idioma">
+                  <option value="es">🇲🇽 ES</option>
+                  <option value="en">🇺🇸 EN</option>
+                </select>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+    </div>
+
+    <div class="offcanvas offcanvas-fullscreen nav-offcanvas" tabindex="-1" id="navOffcanvas" aria-labelledby="navOffcanvasLabel" data-bs-scroll="false">
+      <div class="offcanvas-header border-bottom border-white border-opacity-10">
+        <p class="offcanvas-title h5 mb-0 navbar-brand-glass" id="navOffcanvasLabel">flwry.dev</p>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar menú"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <nav class="nav flex-column gap-2 my-2" aria-label="Navegación móvil">
+          <a class="nav-mobile-item nav-link nav-glass-link fs-5 py-3 rounded-3" href="index.html#inicio" data-i18n="nav.inicio">Inicio</a>
+          <a class="nav-mobile-item nav-link nav-glass-link fs-5 py-3 rounded-3 active" href="proyectos.html" aria-current="page" data-i18n="nav.proyectos">Proyectos</a>
+          <a class="nav-mobile-item nav-link nav-glass-link fs-5 py-3 rounded-3" href="experiencia.html" data-i18n="nav.experiencia">Historial laboral</a>
+          <a class="nav-mobile-item btn btn-outline-primary nav-cta-pill mt-2 py-3" href="index.html#contacto" data-i18n="nav.contacto">Contacto</a>
+        </nav>
+        <div class="mt-auto pt-4 border-top border-white border-opacity-10">
+          <label class="form-label small text-white-50 mb-2" for="lang-selector-offcanvas">Idioma</label>
+          <select id="lang-selector-offcanvas" class="form-select form-select-sm lang-selector lang-selector--offcanvas" aria-label="Idioma">
             <option value="es">🇲🇽 ES</option>
             <option value="en">🇺🇸 EN</option>
           </select>
         </div>
       </div>
-    </nav>
-  </header>
+    </div>
 
   <main class="container container--barra py-5">
     <section class="py-5 mt-4">
@@ -64,10 +93,28 @@
       <p class="mb-0 pie-sitio__texto"><span id="footer-credito"></span></p>
     </div>
   </footer>
+  </div>
+
+  <!--
+  <aside class="paleta-barra" aria-label="Selector de tema">
+    <div class="paleta-barra__titulo">Tema</div>
+    <button type="button" class="paleta-barra__btn" data-theme="navy" aria-label="Tema navy"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="azul-frio" aria-label="Tema azul frío"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="verde" aria-label="Tema verde"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="ambar" aria-label="Tema ámbar"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="violeta" aria-label="Tema violeta"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="cian" aria-label="Tema cian"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="rosa" aria-label="Tema rosa"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="obsidian-gold" aria-label="Tema obsidian gold"></button>
+    <button type="button" class="paleta-barra__btn" data-theme="deep-cyan" aria-label="Tema deep cyan"></button>
+  </aside>
+  -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="navbar.js"></script>
   <script src="i18n.js"></script>
   <script src="script.js"></script>
+  <script src="project-card-render.js"></script>
   <script src="projects.js"></script>
 </body>
 </html>

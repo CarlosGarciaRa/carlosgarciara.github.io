@@ -7,52 +7,179 @@
     "descriptionEn": "Debit card and digital wallet for Barri Money Services. Green Dot API integration, web app (React.js), mobile app (React Native) and NestJS/.NET 9 backend.",
     "type": "enterprise",
     "categories": ["web", "mobile"],
-    "tags": ["React", "React Native", "NestJS", ".NET", "TypeScript", "MongoDB"],
-    "image": "https://placehold.co/800x450/1e1b2e/a78bfa?text=Barri+Card",
+    "tags": [
+      "React",
+      "React Native",
+      "NestJS",
+      ".NET",
+      "TypeScript",
+      "MongoDB"
+    ],
+    "image": "assets/img/projects/barricard/01.png",
+    "images": [
+      "assets/img/projects/barricard/01.png",
+      "assets/img/projects/barricard/02.png"
+    ],
     "demoUrl": "https://www.barri.com/BarriAccount/",
     "repoUrl": null,
     "isFeatured": true
   },
   {
     "id": 2,
-    "title": "Sistema ERP",
-    "titleEn": "ERP System",
-    "description": "Desarrollo de módulo contable y reportes para gestión interna. Integración con APIs de terceros y panel de administración.",
-    "descriptionEn": "Accounting module and reports for internal management. Third-party API integration and admin panel.",
-    "type": "enterprise",
+    "title": "GrailStream",
+    "titleEn": "GrailStream",
+    "description": "Hub web personal que unifica catálogo (TMDB), TV en vivo por listas HLS/M3U (Xtream) y un pipeline de reproducción en el navegador. API en Go (Fiber) con caché Redis y documentación Swagger; integraciones configurables para metadatos y enlaces directos. Capa v2 de compatibilidad: ffprobe analiza contenedor/codecs y decide reproducción directa o remux/transcodificación con ffmpeg (incl. audio-only o vídeo+audio a perfil web), con sesiones UUID, control de concurrencia, timeouts y streaming progresivo vía buffers. Frontend Vue 3, TypeScript, Tailwind y hls.js. Docker Compose. Iteración acelerada con asistencia de IA (p. ej. Cursor).",
+    "descriptionEn": "Personal web hub combining catalog metadata (TMDB), live TV via HLS/M3U-style playlists (Xtream), and in-browser playback. Go API (Fiber) with Redis-backed response caching and Swagger; pluggable integrations for metadata and direct links. A v2 compatibility layer runs ffprobe to inspect container/codecs and chooses direct playback or ffmpeg remux/transcode (including audio-only or full A/V to a web-safe profile), with UUID sessions, concurrency limits, startup timeouts and progressive streaming through buffered I/O. Vue 3, TypeScript, Tailwind and hls.js frontend. Docker Compose. Rapid iteration with AI-assisted tooling (e.g. Cursor).",
+    "type": "personal",
     "categories": ["web"],
-    "tags": ["PHP", "SQL", "Bootstrap", "JavaScript"],
-    "image": "https://placehold.co/600x338/1e1b2e/8b8b8b?text=ERP",
+    "tags": [
+      "Go",
+      "Fiber",
+      "Vue.js",
+      "TypeScript",
+      "Redis",
+      "Docker",
+      "FFmpeg",
+      "FFprobe",
+      "HLS",
+      "REST API",
+      "Swagger"
+    ],
+    "image": "assets/img/projects/grailstream/01.png",
+    "images": [
+      "assets/img/projects/grailstream/01.png",
+      "assets/img/projects/grailstream/02.png"
+    ],
     "demoUrl": "#",
     "repoUrl": null,
     "isFeatured": false
   },
   {
     "id": 3,
-    "title": "App de tareas",
-    "titleEn": "Tasks App",
-    "description": "Aplicación personal para gestión de tareas con sincronización en la nube y tema oscuro. Proyecto de práctica con stack moderno.",
-    "descriptionEn": "Personal task management app with cloud sync and dark theme. Side project with modern stack.",
+    "title": "Orfeo v2",
+    "titleEn": "Orfeo v2",
+    "description": "Bot de música para Discord reescrito en TypeScript. Soporta reproducción, cola, pausa, skip y comandos con prefijo. Desplegado en Render como background worker.",
+    "descriptionEn": "Discord music bot rewritten in TypeScript. Supports playback, queue, pause, skip and prefixed commands. Deployed on Render as a background worker.",
     "type": "personal",
-    "categories": ["web", "mobile"],
-    "tags": ["Vue.js", "Firebase", "PWA"],
-    "image": "https://placehold.co/600x338/1e1b2e/34d399?text=Tasks+App",
-    "demoUrl": "#",
-    "repoUrl": "https://github.com",
+    "categories": ["bot"],
+    "tags": [
+      "TypeScript",
+      "Node.js",
+      "discord.js",
+      "discord-player",
+      "FFmpeg",
+      "Render"
+    ],
+    "image": "assets/img/projects/orfeo/01.png",
+    "images": [
+      "assets/img/projects/orfeo/01.png"
+    ],
+    "demoUrl": null,
+    "repoUrl": null,
     "isFeatured": false
   },
   {
     "id": 4,
-    "title": "Clima móvil",
-    "titleEn": "Weather Mobile",
-    "description": "App móvil para consultar el clima por ubicación. Consumo de API REST y caché local.",
-    "descriptionEn": "Mobile app to check weather by location. REST API consumption and local cache.",
-    "type": "personal",
-    "categories": ["mobile"],
-    "tags": ["React Native", "TypeScript", "API REST"],
-    "image": "https://placehold.co/600x338/1e1b2e/22d3ee?text=Weather",
-    "demoUrl": "#",
-    "repoUrl": "https://github.com",
+    "title": "Ahiva",
+    "titleEn": "Ahiva",
+    "description": "Plataforma de logística y envíos que conecta múltiples carriers nacionales e internacionales. Gestión de remitentes, destinatarios, paquetes, rastreo, créditos, comisiones y facturación. Integraciones con Stripe, Shopify y WooCommerce.",
+    "descriptionEn": "Shipping and logistics platform connecting multiple national and international carriers. Sender/recipient management, parcels, tracking, credits, commissions and invoicing. Stripe, Shopify and WooCommerce integrations.",
+    "type": "enterprise",
+    "categories": ["web"],
+    "tags": [
+      "Vue.js",
+      "Express",
+      "Node.js",
+      "MySQL",
+      "Sequelize",
+      "Redis",
+      "Stripe",
+      "Shopify API",
+      "Docker"
+    ],
+    "image": "assets/img/projects/ahiva/01.png",
+    "images": [
+      "assets/img/projects/ahiva/01.png"
+    ],
+    "demoUrl": "https://ahiva.com.mx",
+    "repoUrl": null,
+    "isFeatured": false
+  },
+  {
+    "id": 5,
+    "title": "Directum",
+    "titleEn": "Directum",
+    "description": "SPA administrativa para gestión de proyectos, cotizaciones, órdenes de compra y proveedores. Integración con Google Drive y Zendesk. Generación de PDFs con términos y condiciones.",
+    "descriptionEn": "Admin SPA for project management, quotes, purchase orders and suppliers. Google Drive and Zendesk integration. PDF generation with terms and conditions.",
+    "type": "enterprise",
+    "categories": ["web"],
+    "tags": [
+      "Vue.js",
+      "Bootstrap Vue",
+      "Vuex",
+      "Axios",
+      "Sass",
+      "Firebase Hosting",
+      "Docker"
+    ],
+    "image": "assets/img/projects/directum/01.png",
+    "images": [
+      "assets/img/projects/directum/01.png"
+    ],
+    "demoUrl": null,
+    "repoUrl": null,
+    "isFeatured": false
+  },
+  {
+    "id": 6,
+    "title": "YoConstruyo",
+    "titleEn": "YoConstruyo",
+    "description": "Dashboard administrativo para la industria de construcción y materiales. Módulos de proyectos, proveedores, catálogos, POS, licitaciones, facturación y reportes. Instalable como PWA.",
+    "descriptionEn": "Admin dashboard for the construction and materials industry. Projects, suppliers, catalogs, POS, bidding, invoicing and reporting modules. Installable as PWA.",
+    "type": "enterprise",
+    "categories": ["web"],
+    "tags": [
+      "Vue.js",
+      "Bootstrap Vue",
+      "Vuex",
+      "ApexCharts",
+      "Leaflet",
+      "PWA",
+      "Sass",
+      "Firebase Hosting"
+    ],
+    "image": "assets/img/projects/yoconstruyo/01.png",
+    "images": [
+      "assets/img/projects/yoconstruyo/01.png"
+    ],
+    "demoUrl": null,
+    "repoUrl": null,
+    "isFeatured": false
+  },
+  {
+    "id": 7,
+    "title": "Agentus",
+    "titleEn": "Agentus",
+    "description": "Plataforma multi-tenant de agentes de IA y automatización de oficina. Workspaces por organización, super-admin, gestión de casos e integraciones con Chatwoot, Shopify, WhatsApp y correo. Orquestación de IA con OpenAI.",
+    "descriptionEn": "Multi-tenant AI agent and office automation platform. Org-scoped workspaces, super-admin, case management and integrations with Chatwoot, Shopify, WhatsApp and email. AI orchestration with OpenAI.",
+    "type": "enterprise",
+    "categories": ["web"],
+    "tags": [
+      "Vue.js",
+      "Quasar",
+      "Firebase",
+      "Cloud Functions",
+      "Pinia",
+      "OpenAI",
+      "Node.js",
+      "Google Cloud"
+    ],
+    "image": "assets/img/projects/agentus/01.png",
+    "images": [
+      "assets/img/projects/agentus/01.png"
+    ],
+    "demoUrl": null,
+    "repoUrl": null,
     "isFeatured": false
   }
 ]
