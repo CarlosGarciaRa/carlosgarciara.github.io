@@ -65,7 +65,23 @@
       "nombre": "Nombre",
       "email": "Email",
       "mensaje": "Mensaje",
-      "enviar": "Enviar"
+      "enviar": "Enviar",
+      "enviando": "Enviando..."
+    },
+    "estado": {
+      "exito": "Mensaje enviado correctamente.",
+      "validacion": "Revisa los campos marcados e intenta nuevamente.",
+      "rateLimit": "Demasiadas solicitudes. Intenta nuevamente en unos minutos.",
+      "error": "No se pudo enviar el mensaje. Intenta de nuevo.",
+      "errorRed": "Error de red. Verifica tu conexión e intenta de nuevo.",
+      "errores": {
+        "nombreRequerido": "El nombre es obligatorio.",
+        "nombreMax": "El nombre debe tener como máximo 100 caracteres.",
+        "emailRequerido": "El email es obligatorio.",
+        "emailInvalido": "El formato del email no es válido.",
+        "mensajeRequerido": "El mensaje es obligatorio.",
+        "mensajeMax": "El mensaje debe tener como máximo 2000 caracteres."
+      }
     },
     "ayuda": "Directo:"
   },

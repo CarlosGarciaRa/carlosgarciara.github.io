@@ -257,20 +257,36 @@
             <p class="contacto-card__texto fs-3 fw-bold mb-0" data-i18n="contacto.texto">Disponible para contratación en empresa y para colaboración por proyecto. Si encaja con lo que buscas, escríbeme por el formulario de la derecha o al correo que aparece abajo.</p>
           </div>
           <div class="col-lg-5">
-            <form class="formulario-contacto" action="#" method="post">
+            <form class="formulario-contacto" action="#" method="post" novalidate>
               <div class="mb-3">
                 <label for="contacto-nombre" class="form-label formulario-contacto__label" data-i18n="contacto.form.nombre">Nombre</label>
-                <input type="text" class="form-control formulario-contacto__input" id="contacto-nombre" name="nombre" required autocomplete="name">
+                <input type="text" class="form-control formulario-contacto__input" id="contacto-nombre" name="nombre" required autocomplete="name" maxlength="100">
+                <div class="invalid-feedback formulario-contacto__feedback" data-field-error="nombre" hidden></div>
               </div>
               <div class="mb-3">
                 <label for="contacto-email" class="form-label formulario-contacto__label" data-i18n="contacto.form.email">Email</label>
                 <input type="email" class="form-control formulario-contacto__input" id="contacto-email" name="email" required autocomplete="email">
+                <div class="invalid-feedback formulario-contacto__feedback" data-field-error="email" hidden></div>
               </div>
               <div class="mb-4">
                 <label for="contacto-mensaje" class="form-label formulario-contacto__label" data-i18n="contacto.form.mensaje">Mensaje</label>
-                <textarea class="form-control formulario-contacto__input formulario-contacto__textarea" id="contacto-mensaje" name="mensaje" rows="4" required></textarea>
+                <textarea class="form-control formulario-contacto__input formulario-contacto__textarea" id="contacto-mensaje" name="mensaje" rows="4" required maxlength="2000"></textarea>
+                <div class="invalid-feedback formulario-contacto__feedback" data-field-error="mensaje" hidden></div>
               </div>
-              <button type="submit" class="btn btn-outline-primary" data-i18n="contacto.form.enviar">Enviar</button>
+              <input
+                type="text"
+                name="website"
+                value=""
+                autocomplete="off"
+                tabindex="-1"
+                class="formulario-contacto__honeypot"
+                aria-hidden="true"
+              >
+              <div class="formulario-contacto__estado" aria-live="polite" aria-atomic="true" hidden></div>
+              <button type="submit" class="btn btn-outline-primary formulario-contacto__submit">
+                <span class="spinner-border spinner-border-sm formulario-contacto__spinner" aria-hidden="true"></span>
+                <span class="formulario-contacto__submit-texto" data-i18n="contacto.form.enviar">Enviar</span>
+              </button>
             </form>
             <p class="formulario-contacto__ayuda mt-4 mb-0 small opacity-75"><span data-i18n="contacto.ayuda">Directo:</span> <a href="mailto:carlos.garcia.ra@outlook.com" class="formulario-contacto__link">carlos.garcia.ra@outlook.com</a></p>
           </div>

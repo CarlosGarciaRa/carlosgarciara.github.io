@@ -65,7 +65,23 @@
       "nombre": "Name",
       "email": "Email",
       "mensaje": "Message",
-      "enviar": "Send"
+      "enviar": "Send",
+      "enviando": "Sending..."
+    },
+    "estado": {
+      "exito": "Message sent successfully.",
+      "validacion": "Please review the highlighted fields and try again.",
+      "rateLimit": "Too many requests. Please try again in a few minutes.",
+      "error": "The message could not be sent. Please try again.",
+      "errorRed": "Network error. Check your connection and try again.",
+      "errores": {
+        "nombreRequerido": "Name is required.",
+        "nombreMax": "Name must be 100 characters or less.",
+        "emailRequerido": "Email is required.",
+        "emailInvalido": "Invalid email format.",
+        "mensajeRequerido": "Message is required.",
+        "mensajeMax": "Message must be 2000 characters or less."
+      }
     },
     "ayuda": "Direct:"
   },
