@@ -7,7 +7,14 @@
     "descriptionEn": "Debit card and digital wallet for Barri Money Services. Green Dot API integration, web app (React.js), mobile app (React Native) and NestJS/.NET 9 backend.",
     "type": "enterprise",
     "categories": ["web", "mobile"],
-    "tags": ["React", "React Native", "NestJS", ".NET", "TypeScript", "MongoDB"],
+    "tags": [
+      "React",
+      "React Native",
+      "NestJS",
+      ".NET",
+      "TypeScript",
+      "MongoDB"
+    ],
     "image": "assets/img/projects/barricard/01.png",
     "images": [
       "assets/img/projects/barricard/01.png",
@@ -21,11 +28,23 @@
     "id": 2,
     "title": "GrailStream",
     "titleEn": "GrailStream",
-    "description": "Hub web personal para unificar catálogo (TMDB), listas en vivo (HLS/M3U8) y reproducción en el navegador. API en Go (Fiber) con Redis; análisis de contenedores con ffprobe y remux bajo demanda vía ffmpeg (MP4 fragmentado, buffers y flush progresivo, selección de pista de audio y seek). Frontend Vue 3, TypeScript y hls.js. Docker Compose. Prototipo iterado de forma acelerada con asistencia de IA.",
-    "descriptionEn": "Personal web hub to unify catalog metadata (TMDB), live playlists (HLS/M3U8) and in-browser playback. Go API (Fiber) with Redis; container inspection via ffprobe and on-demand remux through ffmpeg (fragmented MP4, chunked buffering/flushes, audio track selection and seek). Vue 3, TypeScript and hls.js frontend. Docker Compose. Rapid iteration with AI-assisted tooling (e.g. Cursor).",
+    "description": "Hub web personal que unifica catálogo (TMDB), TV en vivo por listas HLS/M3U (Xtream) y un pipeline de reproducción en el navegador. API en Go (Fiber) con caché Redis y documentación Swagger; integraciones configurables para metadatos y enlaces directos. Capa v2 de compatibilidad: ffprobe analiza contenedor/codecs y decide reproducción directa o remux/transcodificación con ffmpeg (incl. audio-only o vídeo+audio a perfil web), con sesiones UUID, control de concurrencia, timeouts y streaming progresivo vía buffers. Frontend Vue 3, TypeScript, Tailwind y hls.js. Docker Compose. Iteración acelerada con asistencia de IA (p. ej. Cursor).",
+    "descriptionEn": "Personal web hub combining catalog metadata (TMDB), live TV via HLS/M3U-style playlists (Xtream), and in-browser playback. Go API (Fiber) with Redis-backed response caching and Swagger; pluggable integrations for metadata and direct links. A v2 compatibility layer runs ffprobe to inspect container/codecs and chooses direct playback or ffmpeg remux/transcode (including audio-only or full A/V to a web-safe profile), with UUID sessions, concurrency limits, startup timeouts and progressive streaming through buffered I/O. Vue 3, TypeScript, Tailwind and hls.js frontend. Docker Compose. Rapid iteration with AI-assisted tooling (e.g. Cursor).",
     "type": "personal",
     "categories": ["web"],
-    "tags": ["Go", "Fiber", "Vue.js", "TypeScript", "Redis", "Docker", "FFmpeg", "HLS", "REST API"],
+    "tags": [
+      "Go",
+      "Fiber",
+      "Vue.js",
+      "TypeScript",
+      "Redis",
+      "Docker",
+      "FFmpeg",
+      "FFprobe",
+      "HLS",
+      "REST API",
+      "Swagger"
+    ],
     "image": "assets/img/projects/grailstream/01.png",
     "images": [
       "assets/img/projects/grailstream/01.png",

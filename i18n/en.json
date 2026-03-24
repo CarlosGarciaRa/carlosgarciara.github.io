@@ -2,7 +2,8 @@
   "nav": {
     "inicio": "Home",
     "proyectos": "Projects",
-    "experiencia": "Work history"
+    "experiencia": "Work history",
+    "contacto": "Contact"
   },
   "hero": {
     "saludo": "Hi, I'm Carlos",
@@ -10,6 +11,15 @@
     "intro": "Over five years as a fullstack developer: solid experience in backend (APIs, services, databases) and frontend (web and mobile interfaces). I enjoy tackling the full cycle and solving end-to-end problems.",
     "btnContacto": "Contact",
     "btnProyectos": "View projects"
+  },
+  "stats": {
+    "titulo": "By the numbers",
+    "expValor": "5+",
+    "expEtiqueta": "Years of experience",
+    "projValor": "15+",
+    "projEtiqueta": "Projects delivered",
+    "techValor": "10+",
+    "techEtiqueta": "Technologies I've worked with"
   },
   "tagline": {
     "texto": "I build interfaces and applications that scale, from frontend to backend and infrastructure."
@@ -28,17 +38,25 @@
     "titulo": "Tech Stack",
     "frontend": "Frontend",
     "backend": "Backend",
-    "datos": "Data & DevOps"
+    "datos": "Data & DevOps",
+    "tools": "Tools & infrastructure"
   },
   "trayectoria": {
     "titulo": "Background",
     "texto": "Fullstack developer with 5+ years of experience: from agency-side frontend to end-to-end products in consulting and fintech—including the Barri Card ecosystem—with Vue.js, React, React Native, NestJS, .NET, and Google Cloud Functions, delivering for clients in financial services, HR, and government.",
-    "btnVerTrayectoria": "View work history"
+    "btnVerTrayectoria": "View work history",
+    "enlaceHistorial": "View in work history →"
   },
   "proyectosResumen": {
     "titulo": "Projects",
     "texto": "I've worked on multiple projects for different clients; I also build personal projects for self-learning and small tools for my day-to-day work.",
-    "btn": "View projects"
+    "btn": "View projects",
+    "deco": "Filterable catalog by type and stack: from enterprise work to personal experiments.",
+    "puntos": [
+      "Enterprise products and clients in fintech, HR, and the public sector",
+      "Side projects, experimentation, and day-to-day tooling",
+      "Web, mobile, and backend with a focus on APIs and shipping"
+    ]
   },
   "contacto": {
     "titulo": "Contact",

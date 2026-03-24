@@ -41,6 +41,10 @@
     }, obj);
   }
 
+  window.portfolioGetI18n = function (path) {
+    return getNestedValue(translations, path);
+  };
+
   // Aplicar traducciones a elementos con data-i18n
   function applyTranslations() {
     var elements = document.querySelectorAll("[data-i18n]");
@@ -111,6 +115,7 @@
     // Notificar a otros módulos (ej. proyectos) que el idioma cambió
     try {
       window.dispatchEvent(new CustomEvent("portfolio:langChange", { detail: { lang: currentLang } }));
+      window.dispatchEvent(new CustomEvent("portfolio:translationsReady", { detail: { lang: currentLang } }));
     } catch (e) {}
   }
 

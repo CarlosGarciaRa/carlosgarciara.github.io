@@ -1,0 +1,266 @@
+/* Navbar flotante: sticky con offset, glass, scroll, offcanvas */
+
+/* Contenedor que abarca nav + contenido + footer: el sticky hijo permanece acotado a esta altura (toda la página). */
+.site-sticky-root {
+  display: block;
+  background-color: transparent;
+  background-image: none;
+}
+
+/* Cero fondo en envoltorios del nav: solo el gradiente del body y el glass de .navbar-glass (sin capas extra) */
+.site-sticky-root > .navbar-sticky-wrap {
+  background-color: transparent;
+  background-image: none;
+}
+
+.site-sticky-root .barra-superior {
+  background-color: transparent;
+  background-image: none;
+}
+
+.site-sticky-root .barra-superior .container.container--barra {
+  background-color: transparent;
+  background-image: none;
+}
+
+/* Bootstrap .sticky-top + offset flotante (evitar top: 0) */
+.navbar-sticky-wrap.sticky-top {
+  top: 0.75rem;
+  z-index: 1030;
+}
+
+.navbar-glass.navbar {
+  --bs-navbar-bg: transparent;
+  --bs-navbar-padding-y: 0.55rem;
+  --bs-navbar-padding-x: 0.75rem;
+  background: color-mix(in srgb, var(--bg-secondary) 68%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.18);
+  transition:
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    padding 0.25s ease;
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  .navbar-glass.navbar {
+    background: color-mix(in srgb, var(--bg-secondary) 92%, transparent);
+  }
+}
+
+.navbar-glass.navbar.navbar-scrolled {
+  --bs-navbar-padding-y: 0.35rem;
+  box-shadow: 0 12px 42px rgba(0, 0, 0, 0.38);
+  background: color-mix(in srgb, var(--bg-primary) 84%, transparent);
+}
+
+/* Idioma en desktop: vidrio acorde a la pill y al estado .navbar-scrolled (evita el plano --bg-tertiary global) */
+.navbar-glass .lang-selector.form-select {
+  background-color: color-mix(in srgb, var(--bg-secondary) 36%, transparent);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: var(--text-primary);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.navbar-glass.navbar.navbar-scrolled .lang-selector.form-select {
+  background-color: color-mix(in srgb, var(--bg-primary) 46%, transparent);
+  border-color: rgba(255, 255, 255, 0.17);
+}
+
+.navbar-glass .lang-selector.form-select:focus {
+  background-color: color-mix(in srgb, var(--bg-primary) 52%, transparent);
+  border-color: var(--accent);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+@supports not (backdrop-filter: blur(8px)) {
+  .navbar-glass .lang-selector.form-select {
+    background-color: color-mix(in srgb, var(--bg-secondary) 78%, transparent);
+  }
+
+  .navbar-glass.navbar.navbar-scrolled .lang-selector.form-select {
+    background-color: color-mix(in srgb, var(--bg-primary) 82%, transparent);
+  }
+}
+
+.navbar-brand-glass {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: letter-spacing 0.3s ease;
+}
+
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .navbar-brand-glass {
+    background-image: linear-gradient(100deg, var(--text-primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media (hover: hover) {
+  .navbar-brand-glass:hover {
+    letter-spacing: 0.14em;
+  }
+}
+
+.navbar-brand-glass:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.navbar-toggler-glass:focus {
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+/* Enlaces: sin subrayado Bootstrap; línea desde el centro */
+.nav-glass-link.nav-link {
+  text-decoration: none;
+  position: relative;
+  color: color-mix(in srgb, var(--text-primary) 82%, transparent);
+  transition: color 0.2s ease;
+}
+
+.nav-glass-link.nav-link:hover,
+.nav-glass-link.nav-link:focus-visible {
+  color: var(--text-primary);
+}
+
+.nav-glass-link.nav-link.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.nav-glass-link.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.2rem;
+  width: calc(100% - 0.35rem);
+  max-width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.28s ease;
+  pointer-events: none;
+}
+
+.nav-glass-link.nav-link:hover::after,
+.nav-glass-link.nav-link:focus-visible::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.nav-glass-link.nav-link.active::after {
+  transform: translateX(-50%) scaleX(1);
+  background: var(--accent);
+}
+
+/* CTA outline → sólido al hover */
+.navbar .nav-cta-pill.btn-outline-primary {
+  --bs-btn-color: var(--accent);
+  --bs-btn-border-color: var(--accent);
+  --bs-btn-hover-bg: var(--accent);
+  --bs-btn-hover-border-color: var(--accent);
+  --bs-btn-hover-color: var(--bg-primary);
+  --bs-btn-active-bg: var(--accent-hover);
+  --bs-btn-active-border-color: var(--accent-hover);
+  --bs-btn-active-color: var(--bg-primary);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.navbar .nav-cta-pill.btn-outline-primary:hover,
+.navbar .nav-cta-pill.btn-outline-primary:focus-visible {
+  color: var(--bg-primary);
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Offcanvas fullscreen glass */
+.nav-offcanvas.offcanvas {
+  background: color-mix(in srgb, var(--bg-primary) 78%, transparent) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: none;
+}
+
+@supports not (backdrop-filter: blur(16px)) {
+  .nav-offcanvas.offcanvas {
+    background: color-mix(in srgb, var(--bg-primary) 96%, transparent) !important;
+  }
+}
+
+.nav-offcanvas .nav-mobile-item.nav-link.nav-glass-link::after {
+  bottom: 0.5rem;
+}
+
+.nav-offcanvas .nav-mobile-item.nav-link.nav-glass-link.active {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+@keyframes nav-mobile-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.offcanvas.show .nav-mobile-item {
+  opacity: 0;
+  animation: nav-mobile-item-in 0.42s ease forwards;
+}
+
+.offcanvas.show .nav-mobile-item:nth-child(1) {
+  animation-delay: 0.06s;
+}
+
+.offcanvas.show .nav-mobile-item:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.offcanvas.show .nav-mobile-item:nth-child(3) {
+  animation-delay: 0.18s;
+}
+
+.offcanvas.show .nav-mobile-item:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar-glass.navbar,
+  .navbar-brand-glass,
+  .nav-glass-link.nav-link,
+  .nav-glass-link.nav-link::after,
+  .navbar .nav-cta-pill.btn-outline-primary {
+    transition-duration: 0.01ms !important;
+  }
+
+  .offcanvas.show .nav-mobile-item {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+.lang-selector--offcanvas {
+  max-width: 12rem;
+}
