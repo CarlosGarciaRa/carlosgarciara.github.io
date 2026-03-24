@@ -54,6 +54,9 @@
       });
 
       render.initCarousels(grid);
+      if (typeof render.initDescriptionToggles === "function") {
+        render.initDescriptionToggles(grid);
+      }
 
       var tooltips = grid.querySelectorAll('[data-bs-toggle="tooltip"]');
       if (typeof bootstrap !== "undefined" && bootstrap.Tooltip) {

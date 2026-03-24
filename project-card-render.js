@@ -17,8 +17,20 @@
   function getButtonLabels() {
     var lang = getLang();
     return lang === "en"
-      ? { verDemo: "View Demo", github: "GitHub", privadoNda: "Private (NDA)" }
-      : { verDemo: "Ver Demo", github: "GitHub", privadoNda: "Privado (NDA)" };
+      ? {
+          verDemo: "View Demo",
+          github: "GitHub",
+          privadoNda: "Private (NDA)",
+          verMas: "Read more",
+          verMenos: "Read less"
+        }
+      : {
+          verDemo: "Ver Demo",
+          github: "GitHub",
+          privadoNda: "Privado (NDA)",
+          verMas: "Ver mas",
+          verMenos: "Ver menos"
+        };
   }
 
   function getProjectText(p) {
@@ -39,6 +51,32 @@
     }
     if (p.image) return [p.image];
     return [];
+  }
+
+  function getPlaceholderTextColor(projectType, title) {
+    var safeTitle = (title || "").toLowerCase();
+
+    // Mantener tonos clásicos si regresan proyectos antiguos con estos nombres.
+    if (safeTitle.indexOf("weather") !== -1 || safeTitle.indexOf("clima") !== -1) return "22d3ee";
+    if (safeTitle.indexOf("tasks") !== -1 || safeTitle.indexOf("tareas") !== -1) return "34d399";
+    if (safeTitle.indexOf("erp") !== -1) return "8b8b8b";
+
+    var palette = projectType === "personal"
+      ? ["34d399", "22d3ee", "a78bfa", "f472b6"]
+      : ["8b8b8b", "93c5fd", "60a5fa", "fbbf24"];
+
+    var hash = 0;
+    for (var i = 0; i < safeTitle.length; i++) {
+      hash = (hash + safeTitle.charCodeAt(i)) % 2147483647;
+    }
+    return palette[hash % palette.length];
+  }
+
+  function buildTitlePlaceholderUrl(projectType, title) {
+    var bg = "1e1b2e";
+    var fg = getPlaceholderTextColor(projectType, title);
+    var text = encodeURIComponent((title || "").trim() || "Proyecto");
+    return "https://placehold.co/600x338/" + bg + "/" + fg + "?text=" + text;
   }
 
   function prefersReducedMotion() {
@@ -108,6 +146,55 @@
     });
   }
 
+  function initDescriptionToggles(scopeEl) {
+    if (!scopeEl) return;
+    var cards = scopeEl.querySelectorAll(".project-card");
+    cards.forEach(function (card) {
+      var description = card.querySelector(".project-card__description");
+      var toggle = card.querySelector(".project-card__toggle-description");
+      if (!description || !toggle) return;
+
+      var labels = getButtonLabels();
+      var projectTitle = ((card.getAttribute("data-project-title") || "").trim()).toLowerCase();
+      var isGrailstream = projectTitle === "grailstream";
+      if (isGrailstream) {
+        card.classList.add("is-description-unlimited");
+        card.classList.remove("is-description-truncated");
+        card.classList.remove("is-description-expanded");
+        toggle.setAttribute("hidden", "");
+        toggle.setAttribute("aria-hidden", "true");
+        return;
+      }
+
+      card.classList.remove("is-description-unlimited");
+
+      var collapsedHeight = parseFloat(global.getComputedStyle(description).lineHeight) * 5;
+      if (!collapsedHeight || Number.isNaN(collapsedHeight)) collapsedHeight = 64;
+      var fullHeight = description.scrollHeight;
+      var isTruncated = fullHeight > collapsedHeight + 1;
+
+      card.classList.toggle("is-description-truncated", isTruncated);
+      card.classList.remove("is-description-expanded");
+
+      if (!isTruncated) {
+        toggle.setAttribute("hidden", "");
+        toggle.setAttribute("aria-hidden", "true");
+        return;
+      }
+
+      toggle.removeAttribute("hidden");
+      toggle.removeAttribute("aria-hidden");
+      toggle.textContent = labels.verMas;
+      toggle.setAttribute("aria-expanded", "false");
+
+      toggle.addEventListener("click", function () {
+        var isExpanded = card.classList.toggle("is-description-expanded");
+        toggle.textContent = isExpanded ? labels.verMenos : labels.verMas;
+        toggle.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+      });
+    });
+  }
+
   /**
    * @param {object} p proyecto desde JSON
    * @param {{ outlineButtons?: boolean, uniformColumns?: boolean }} options
@@ -146,7 +233,7 @@
             return '<img class="' + cls + '" src="' + escapeHtml(src) + '" alt="" loading="lazy" decoding="async">';
           })
           .join("")
-      : '<img class="project-card__image" src="' + escapeHtml(images[0] || "") + '" alt="" loading="lazy" decoding="async">';
+      : '<img class="project-card__image" src="' + escapeHtml(images[0] || buildTitlePlaceholderUrl(p.type, text.title)) + '" alt="" loading="lazy" decoding="async">';
 
     var demoClass = outline ? "btn btn-outline-primary btn-sm" : "btn btn-primary btn-sm";
     var demoBtn =
@@ -174,7 +261,9 @@
     }
 
     col.innerHTML =
-      '<article class="project-card surface-card surface-card--interactive card">' +
+      '<article class="project-card surface-card surface-card--interactive card" data-project-title="' +
+      escapeHtml(text.title) +
+      '">' +
       '  <div class="project-card__image-wrap' +
       (hasCarousel ? " project-card__image-wrap--carousel" : "") +
       '"' +
@@ -197,6 +286,7 @@
       '    <p class="project-card__description">' +
       escapeHtml(text.description) +
       "</p>" +
+      '    <button type="button" class="project-card__toggle-description" hidden aria-expanded="false"></button>' +
       '    <div class="project-card__actions">' +
       demoBtn +
       repoBtn +
@@ -204,12 +294,22 @@
       "  </div>" +
       "</article>";
 
+    var fallbackSrc = buildTitlePlaceholderUrl(p.type, text.title);
+    col.querySelectorAll(".project-card__image").forEach(function (img) {
+      img.addEventListener("error", function () {
+        if (img.dataset.fallbackApplied === "1") return;
+        img.dataset.fallbackApplied = "1";
+        img.src = fallbackSrc;
+      });
+    });
+
     return col;
   }
 
   global.portfolioProjectCardRender = {
     buildColumn: buildProjectColumn,
     initCarousels: initProjectCarousels,
+    initDescriptionToggles: initDescriptionToggles,
     escapeHtml: escapeHtml,
     getLang: getLang,
     getProjectText: getProjectText,
